@@ -3,8 +3,119 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/api/v1/auth/login":
+    post:
+      summary: login authentication
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
+  api/v1/converters/cidr_to_mask:
+    get:
+      summary: Convert CIDR to mask
+      tags:
+      - Converters
+      parameters:
+      - name: cidr
+        in: query
+        required: true
+        description: CIDR
+        schema:
+          type: string
+      responses:
+        '200':
+          description: CIDR converted to mask
+  api/v1/converters/mask_to_cidr:
+    get:
+      summary: Convert Mask to Cidr
+      tags:
+      - Converters
+      parameters:
+      - name: mask
+        in: query
+        required: true
+        description: Mask
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Mask converted to CIDR
+  "/api/v1/users":
+    get:
+      summary: list users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost: {}
+- url: http://localhost:3000/
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      name: Authorization
+      in: header
+security:
+- bearerAuth: []
