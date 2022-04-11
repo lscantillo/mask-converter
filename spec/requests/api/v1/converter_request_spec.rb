@@ -6,7 +6,7 @@ RSpec.describe "api/v1/converters", type: :request do
       get 'Convert CIDR to mask' do
         tags 'Converters'
         consumes 'application/json'
-        parameter name: :cidr, in: :query, type: :string, required: true, description: 'CIDR'
+        parameter name: :cidr, in: :body, type: :string, required: true, description: 'CIDR'
         response '200', 'CIDR converted to mask' do
           let(:cidr) { '13'}
           run_test!
@@ -22,7 +22,7 @@ RSpec.describe "api/v1/converters", type: :request do
       get 'Convert Mask to Cidr' do
         tags 'Converters'
         consumes 'application/json'
-        parameter name: :mask, in: :query, type: :string, required: true, description: 'Mask'
+        parameter name: :mask, in: :body, type: :string, required: true, description: 'Mask'
         response '200', 'Mask converted to CIDR' do
           let(:mask) { '255.255.0.0'}
           run_test!

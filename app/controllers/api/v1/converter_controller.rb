@@ -13,14 +13,25 @@ class Api::V1::ConverterController < ApplicationController
     }, status: :ok
   end
 
+  #create a function in ruby in rails that convert cidr to mask
+  # def cidr_to_mask
+  #  @cidr = params[:cidr]
+  # @mask = @cidr.to_i.to_s(2).count('1').to_s
+  # render json: {
+  #  function: 'cidr_to_mask',
+  # input: @cidr,
+  # output: @mask
+  # }, status: :ok
+  # end
+
   def mask_to_cidr
     @mask = params[:mask]
     mask_int = NetAddr.netmask_to_i(@mask)
     @cidr = NetAddr.mask_to_bits(mask_int)
     render json: {
       function: 'mask_to_cidr',
-      input: @cidr,
-      output: @mask
+      input: @mask,
+      output: @cidr
     }, status: :ok
   end
 

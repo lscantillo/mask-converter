@@ -31,31 +31,31 @@ paths:
       summary: Convert CIDR to mask
       tags:
       - Converters
-      parameters:
-      - name: cidr
-        in: query
-        required: true
-        description: CIDR
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: CIDR converted to mask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
   api/v1/converters/mask_to_cidr:
     get:
       summary: Convert Mask to Cidr
       tags:
       - Converters
-      parameters:
-      - name: mask
-        in: query
-        required: true
-        description: Mask
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: Mask converted to CIDR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
   "/api/v1/users":
     get:
       summary: list users
