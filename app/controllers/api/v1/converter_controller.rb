@@ -5,7 +5,7 @@ class Api::V1::ConverterController < ApplicationController
 
   def cidr_to_mask
     @cidr = params[:cidr]
-    @mask = @cidr.to_i.to_s(2).count('1').to_s
+    @mask = IPAddr.new('255.255.255.255').mask(@cidr).to_s
     render json: {
       function: 'cidr_to_mask',
       input: @cidr,
@@ -13,16 +13,6 @@ class Api::V1::ConverterController < ApplicationController
     }, status: :ok
   end
 
-  #create a function in ruby in rails that convert cidr to mask
-  # def cidr_to_mask
-  #  @cidr = params[:cidr]
-  # @mask = @cidr.to_i.to_s(2).count('1').to_s
-  # render json: {
-  #  function: 'cidr_to_mask',
-  # input: @cidr,
-  # output: @mask
-  # }, status: :ok
-  # end
 
   def mask_to_cidr
     @mask = params[:mask]
@@ -36,7 +26,7 @@ class Api::V1::ConverterController < ApplicationController
   end
 
   private
-
+  # Strong params to filter the input
   def cidr_to_mask_params
     params.permit(:cidr)
   end

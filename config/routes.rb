@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'application#health_check'
+  get 'health_check', to: 'application#health_check'
   namespace :api do
     namespace :v1 do
       resources :users
