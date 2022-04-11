@@ -32,5 +32,3 @@ EXPOSE 3000
 RUN ["chmod", "+x", "/home/developer/app/entrypoints/docker-entrypoint.sh"]
 ## Run server
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
-#ENTRYPOINT ["bin/rails"]
-#CMD ["s", "-b", "0.0.0.0"]
