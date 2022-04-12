@@ -19,6 +19,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: sre_api_web
+    image: lscantillo/academy-sre-bootcamp-luis-cantillo:latest
     ports:
       - 3000:3000
     depends_on:
