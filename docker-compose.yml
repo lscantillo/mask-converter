@@ -1,0 +1,31 @@
+version: "3.8"
+volumes:
+  postgresql_sre_api:
+  bundle_path_sre_api:
+services:
+  db:
+    restart: on-failure:3
+    image: postgres:13.2
+    container_name: sre_api_db
+    volumes:
+      - postgresql_sre_api:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - ./environments/.env.postgresql
+  app:
+    restart: on-failure:3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sre_api_web
+    image: lscantillo/academy-sre-bootcamp-luis-cantillo:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    volumes:
+      - .:/home/developer/app
+      - bundle_path_sre_api:/usr/local/bundle
+    env_file:
+      - ./environments/.env.sre-api

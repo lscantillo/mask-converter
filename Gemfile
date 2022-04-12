@@ -22,7 +22,7 @@ gem 'puma', '~> 5.0'
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem 'bcrypt', '~> 3.1.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -60,3 +60,6 @@ gem 'rswag-ui', '~> 2.4'
 # Sentry Error monitor
 gem 'sentry-rails'
 gem 'sentry-ruby'
+
+gem 'netaddr', '~> 1.5', '>= 1.5.1'
+gem 'jwt'
