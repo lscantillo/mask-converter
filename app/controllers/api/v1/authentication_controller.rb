@@ -1,4 +1,4 @@
-class Api::V1::AuthenticationController < ApplicationController
+class Api::V1::AuthenticationController < Api::V1::ApplicationController
 
   # POST /auth/login
   def login
