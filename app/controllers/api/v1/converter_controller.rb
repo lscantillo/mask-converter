@@ -1,4 +1,4 @@
-class Api::V1::ConverterController < ApplicationController
+class Api::V1::ConverterController < Api::V1::ApplicationController
   before_action :authorize_request
   before_action :cidr_to_mask_params, only: [:cidr_to_mask]
   before_action :mask_to_cidr_params, only: [:mask_to_cidr]
@@ -11,6 +11,12 @@ class Api::V1::ConverterController < ApplicationController
       input: @cidr,
       output: @mask
     }, status: :ok
+  rescue StandardError => e
+    render json: {
+      function: 'cidr_to_mask',
+      input: @cidr,
+      error: e.message
+    }, status: :unprocessable_entity
   end
 
 
@@ -23,6 +29,12 @@ class Api::V1::ConverterController < ApplicationController
       input: @mask,
       output: @cidr
     }, status: :ok
+  rescue StandardError => e
+    render json: {
+      function: 'mask_to_cidr',
+      input: @mask,
+      error: e.message
+    }, status: :unprocessable_entity
   end
 
   private

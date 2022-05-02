@@ -9,6 +9,90 @@ paths:
       summary: login authentication
       tags:
       - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
+  "/api/v1/converter/cidr_to_mask":
+    post:
+      summary: Convert CIDR to mask
+      tags:
+      - Converters
+      security:
+      - bearerAuth: {}
+      parameters: []
+      responses:
+        '200':
+          description: CIDR converted to mask
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cidr:
+                  type: string
+              required:
+              - cidr
+  "/api/v1/converter/mask_to_cidr":
+    post:
+      summary: Convert Mask to Cidr
+      tags:
+      - Converters
+      security:
+      - bearerAuth: {}
+      parameters: []
+      responses:
+        '200':
+          description: Mask converted to CIDR
+        '401':
+          description: Unauthorized
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mask:
+                  type: string
+              required:
+              - mask
+  "/api/v1/users":
+    get:
+      summary: list users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create user
+      tags:
+      - Users
+      security:
+      - bearerAuth: {}
       parameters: []
       responses:
         '200':
@@ -23,54 +107,12 @@ paths:
                   type: string
                 password:
                   type: string
+                password_confirmation:
+                  type: string
               required:
               - username
               - password
-  api/v1/converters/cidr_to_mask:
-    get:
-      summary: Convert CIDR to mask
-      tags:
-      - Converters
-      parameters: []
-      responses:
-        '200':
-          description: CIDR converted to mask
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: string
-        required: true
-  api/v1/converters/mask_to_cidr:
-    get:
-      summary: Convert Mask to Cidr
-      tags:
-      - Converters
-      parameters: []
-      responses:
-        '200':
-          description: Mask converted to CIDR
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: string
-        required: true
-  "/api/v1/users":
-    get:
-      summary: list users
-      tags:
-      - Users
-      responses:
-        '200':
-          description: successful
-    post:
-      summary: create user
-      tags:
-      - Users
-      responses:
-        '200':
-          description: successful
+              - password_confirmation
   "/api/v1/users/{id}":
     parameters:
     - name: id
@@ -112,6 +154,7 @@ servers:
 components:
   securitySchemes:
     bearerAuth:
+      description: Bearer token authentication
       type: http
       scheme: bearer
       bearerFormat: JWT

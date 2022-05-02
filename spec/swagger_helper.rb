@@ -30,6 +30,7 @@ RSpec.configure do |config|
       components: {
         securitySchemes: {
           bearerAuth: {
+            description: 'Bearer token authentication',
             type: :http,
             scheme: :bearer,
             bearerFormat: :JWT,
@@ -39,7 +40,9 @@ RSpec.configure do |config|
         }
       },
       security: [
-        { bearerAuth: [] }
+        {
+          bearerAuth: []
+        }
       ]
     }
   }
