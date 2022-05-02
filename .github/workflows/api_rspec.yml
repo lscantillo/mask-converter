@@ -38,4 +38,6 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: postgres
+          SENTRY_KEY: ${{ secrets.SENTRY_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: bundle exec rspec spec
