@@ -11,7 +11,9 @@ jobs:
       postgres:
         image: postgres:11.6
         ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5      
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          POSTGRES_PASSWORD: postgres
 
     steps:
       - uses: actions/checkout@v2
@@ -29,8 +31,9 @@ jobs:
       - name: Setup Database        
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: postgres
+          DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: password
           SENTRY_KEY: ${{ secrets.SENTRY_KEY }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: bin/rails db:create db:schema:load
@@ -38,8 +41,9 @@ jobs:
       - name: Build and test with rspec        
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: postgres
+          DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: password
           SENTRY_KEY: ${{ secrets.SENTRY_KEY }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: bundle exec rspec spec
