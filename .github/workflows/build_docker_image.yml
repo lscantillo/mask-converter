@@ -49,4 +49,10 @@ jobs:
             "DB_PASSWORD= ${{ env.DB_PASSWORD }}"
             "DB_HOST= ${{ env.DB_HOST }}"
             "SENTRY_KEY= ${{ env.SENTRY_KEY }}"
-            "JWT_SECRET= ${{ env.JWT_SECRET }}"      
+            "JWT_SECRET= ${{ env.JWT_SECRET }}" 
+          build_args: |
+            - "DB_USER= ${{ env.DB_USER }}"
+            - "DB_PASSWORD= ${{ env.DB_PASSWORD }}"
+            - "DB_HOST= ${{ env.DB_HOST }}"
+            - "SENTRY_KEY= ${{ env.SENTRY_KEY }}"
+            - "JWT_SECRET= ${{ env.JWT_SECRET }}"
