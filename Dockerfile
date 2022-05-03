@@ -1,5 +1,11 @@
 FROM ruby:3.0.2
 
+ENV SENTRY_KEY=${SENTRY_KEY} \
+    JWT_SECRET=${JWT_SECRET} \
+    DB_USER=${DB_USER} \
+    DB_PASSWORD=${DB_PASSWORD} \
+    DB_HOST=${DB_HOST}
+
 ADD https://dl.yarnpkg.com/debian/pubkey.gpg /tmp/yarn-pubkey.gpg
 RUN apt-key add /tmp/yarn-pubkey.gpg && rm /tmp/yarn-pubkey.gpg
 RUN echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list
