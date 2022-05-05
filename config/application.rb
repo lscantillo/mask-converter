@@ -26,7 +26,8 @@ module MaskConverter
     Rails.application.config.hosts = [
       "localhost",                    # The localhost reserved domain.
       "www.example.com",
-      ".amazonaws.com",                  # Amazon ELB hostnames.
+      "/.*\.amazonaws\.com/",                  # Amazon ELB hostnames.
+      ".us-east-1.elb.amazonaws.com",
       IPAddr.new("0.0.0.0/0"),        # All IPv4 addresses.
       IPAddr.new("::/0")
     ]
