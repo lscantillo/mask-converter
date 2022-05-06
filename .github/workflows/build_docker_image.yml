@@ -44,7 +44,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SECRET_KEY }}
           script: |
             docker stop sre-api
             docker image rm -f lscantillo/academy-sre-bootcamp-luis-cantillo            
