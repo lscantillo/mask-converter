@@ -38,8 +38,10 @@ jobs:
             DB_HOST=${{ secrets.DB_HOST }}
             SENTRY_KEY=${{ secrets.SENTRY_KEY }}
             JWT_SECRET=${{ secrets.JWT_SECRET }}
-      -
-        name: Run ssh comands on the VM
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run ssh comands on the VM
         uses: fifsky/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -47,5 +49,6 @@ jobs:
           key: ${{ secrets.SECRET_KEY }}
           command: |
             docker stop sre-api
+            docker container rm sre-api
             docker image rm -f lscantillo/academy-sre-bootcamp-luis-cantillo            
             docker run -dp 3000:3000 --name sre-api lscantillo/academy-sre-bootcamp-luis-cantillo
