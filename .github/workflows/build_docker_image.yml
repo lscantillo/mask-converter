@@ -40,12 +40,12 @@ jobs:
             JWT_SECRET=${{ secrets.JWT_SECRET }}
       -
         name: Run ssh comands on the VM
-        uses: appleboy/ssh-action@master
+        uses: fifsky/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SECRET_KEY }}
-          script: |
+          command: |
             docker stop sre-api
             docker image rm -f lscantillo/academy-sre-bootcamp-luis-cantillo            
             docker run -dp 3000:3000 --name sre-api lscantillo/academy-sre-bootcamp-luis-cantillo
