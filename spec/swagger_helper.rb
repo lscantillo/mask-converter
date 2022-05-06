@@ -23,9 +23,8 @@ RSpec.configure do |config|
       },
       paths: {},
       servers: [
-        {
-          url: 'http://localhost:3000/'
-        }
+        { url: ENV.fetch('RAILS_URL', 'http://localhost:3000') } ,
+        { url: 'http://terraform-infra-elb-sre-app-848223682.us-east-1.elb.amazonaws.com' }
       ],
       components: {
         securitySchemes: {

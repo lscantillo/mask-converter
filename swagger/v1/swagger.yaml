@@ -95,7 +95,7 @@ paths:
       - bearerAuth: {}
       parameters: []
       responses:
-        '200':
+        '201':
           description: successful
       requestBody:
         content:
@@ -113,44 +113,9 @@ paths:
               - username
               - password
               - password_confirmation
-  "/api/v1/users/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show user
-      tags:
-      - Users
-      responses:
-        '200':
-          description: successful
-    patch:
-      summary: update user
-      tags:
-      - Users
-      responses:
-        '200':
-          description: successful
-    put:
-      summary: update user
-      tags:
-      - Users
-      responses:
-        '200':
-          description: successful
-    delete:
-      summary: delete user
-      tags:
-      - Users
-      responses:
-        '200':
-          description: successful
 servers:
-- url: http://localhost:3000/
+- url: http://localhost:3000
+- url: http://terraform-infra-elb-sre-app-848223682.us-east-1.elb.amazonaws.com
 components:
   securitySchemes:
     bearerAuth:
